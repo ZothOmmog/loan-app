@@ -1,24 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
 
-function App() {
+import FirstLoanItem from "./components/FirstInfo/FirstLoanItem";
+import SecondLoanItem from "./components/SecondInfo/SecondLoanItem";
+import ThirdLoanItem from "./components/ThirdInfo/ThirdLoanItem";
+import { loans } from "./current-loans.json";
+
+import "./App.css";
+
+function App({ title }) {
+  const [mainAmount, setMainAmount] = React.useState(85754);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <div className="wrapper">
+        <h1>Current Loans</h1>
+        <FirstLoanItem title={"First loan"} />
+        <SecondLoanItem title={"Second loan"} />
+        <ThirdLoanItem title={"Third loan"} />
+        <span>Total amounts available for invesments: ${mainAmount}</span>
+      </div>
     </div>
   );
 }
