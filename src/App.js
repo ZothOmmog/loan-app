@@ -14,7 +14,11 @@ function App({ title }) {
     <div className="container">
       <div className="wrapper">
         <h1>Current Loans</h1>
-        <FirstLoanItem title={"First loan"} />
+        <FirstLoanItem 
+          title={"First loan"} 
+          totalAmount={mainAmount} 
+          setTotalAmount={setMainAmount}
+         />
         <SecondLoanItem title={"Second loan"} />
         <ThirdLoanItem title={"Third loan"} />
         <span>Total amounts available for invesments: ${mainAmount}</span>
