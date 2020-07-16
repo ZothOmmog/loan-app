@@ -3,24 +3,21 @@ import { loans } from "../../current-loans.json";
 
 import "../../App.css";
 
-function FirstLoan() {
-  const [totalAmount, setTotalAmount] = React.useState(0);
+function FirstLoan({ totalAmount, setTotalAmount }) {
   const [totalAvailable, setTotalAvailable] = React.useState(0);
 
   const handleInputChange = (e) => {
     e.preventDefault();
 
-    const number = +e.target.value;
+    const num = +e.target.value;
 
-    if (!isNaN(number)) {
-      setTotalAmount(number);
-      setTotalAvailable(number);
-    }
+    setTotalAvailable(
+      isNaN(num) ? 0 : num
+    );
   };
 
-  const amountGap = (e) => {
-    e.preventDefault();
-    console.log(totalAmount);
+  const amountGap = () => {
+    setTotalAmount(totalAmount - totalAvailable);
   };
 
   const convertAmount = (str) => {
@@ -30,6 +27,8 @@ function FirstLoan() {
   const convertAvailable = (str) => {
     return Number(str.split(",").join(""));
   };
+
+  const investmentAmount = totalAmount - totalAvailable;
 
   const firstLoans = loans
     .filter((loan) => loan.id === "1")
@@ -45,9 +44,9 @@ function FirstLoan() {
         <p key={loan.term_remaining}>Loan ends in: {loan.term_remaining}</p>
         <p key={loan.amount}>
           Investment amount:{" "}
-          {convertAmount(loan.amount) - totalAmount < 0
+          {investmentAmount < 0
             ? "Your money is out"
-            : convertAmount(loan.amount) - totalAmount}
+            : investmentAmount}
         </p>
       </div>
     ));

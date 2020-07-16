@@ -17,10 +17,10 @@ const customStyles = {
 
 Modal.setAppElement("#root");
 
-function FirstLoanItem({ title }) {
+function FirstLoanItem({ title, totalAmount, setTotalAmount }) {
   const [modalIsOpen, setModalIsOpen] = React.useState(false);
   const [invested, setInvested] = React.useState(false);
-
+  
   return (
     <div className="card">
       <div className="card-body">
@@ -42,7 +42,10 @@ function FirstLoanItem({ title }) {
             onRequestClose={() => setModalIsOpen(false)}
             style={customStyles}
           >
-            <FirstLoan />
+            <FirstLoan
+              totalAmount={totalAmount}
+              setTotalAmount={setTotalAmount}
+            />
           </Modal>
         </div>
       </div>
